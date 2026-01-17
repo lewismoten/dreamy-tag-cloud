@@ -2,9 +2,11 @@
 
 ![alt Dreamy Tag Cloud Banner](dreamy-tag-cloud/assets/banner-772x250.png)
 
-![alt Dreamy Tag Cloud Icon](dreamy-tag-cloud/assets/banner-128x128.png)
+![alt Dreamy Tag Cloud Icon](dreamy-tag-cloud/assets/icon-128x128.png)
 
 The Dreamy Tag Cloud plug-in will allow you to display a tag cloud that filters based on category and tags. You can use Short Code or Gutenberg Code Blocks.
+
+![alt Dreamy Tag Cloud Example](dreamy-tag-cloud/assets/example-512x512.jpg)
 
 # Short Code
 
