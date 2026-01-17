@@ -1,0 +1,46 @@
+.block-editor-block-types-list__item.editor-block-list-item-lewismoten-dreamy-tag-cloud .block-editor-block-icon,
+.block-editor-block-card__icon.lewismoten-dreamy-tag-cloud {
+    background-image: url('../assets/icon-20x20.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+}
+
+.editor-block-list-item-lewismoten-dreamy-tag-cloud svg,
+.lewismoten-dreamy-tag-cloud svg {
+    display: none !important;
+}
+
+.widget_dreamy_tag_cloud_widget .tagcloud a {
+    display: inline-block;
+    margin: 4px;
+    padding: 6px 12px;
+    background: rgba(144, 238, 144, 0.1);
+    color: #2e7d32 !important;
+    border: 1px solid #a5d6a7;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    text-transform: capitalize;
+}
+
+.widget_dreamy_tag_cloud_widget .tagcloud a:hover {
+    background: #a5d6a7;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(165, 214, 167, 0.6);
+    transform: translateY(-2px);
+}
+
+.widget_dreamy_tag_cloud_widget .tagcloud a {
+    line-height: 1.2;
+}
+.wp-block-lewismoten-dreamy-tag-cloud a {
+  pointer-events: none;
+  cursor: default;
+}
+.wp-block-lewismoten-dreamy-tag-cloud a {
+  text-decoration: underline;
+}

@@ -1,0 +1,3 @@
+*.zip
+dist_temp/
+.DS_Store

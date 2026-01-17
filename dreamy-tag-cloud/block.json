@@ -1,0 +1,32 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "lewismoten/dreamy-tag-cloud",
+    "title": "Dreamy Tag Cloud Filter",
+    "category": "design",
+    "description": "Display a filtered cloud of dream symbols.",
+    "keywords": ["tag", "cloud", "dream", "symbols", "lewismoten"],
+    "version": "1.0.1",
+    "textdomain": "dreamy-tag-cloud",
+    "icon": "cloud",
+    "editorStyle": "file:./admin/admin-style.css",
+    "editorScript": "file:./block.js",
+    "attributes": {
+        "title": { "type": "string", "default": "" },
+        "auto_exclude": { "type": "boolean", "default": true },
+        
+        "cat": { "type": "array", "default": [] },
+        "tags": { "type": "array", "default": [] },
+        "exclude": { "type": "array", "default": [] },
+
+        "cat_raw": { "type": "string", "default": "" },
+        "tags_raw": { "type": "string", "default": "" },
+        "exclude_raw": { "type": "string", "default": "" }
+
+    },
+    "supports": {
+        "html": false,
+        "spacing": { "margin": true, "padding": true },
+        "inserter": true
+    }
+}

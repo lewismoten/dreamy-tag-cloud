@@ -1,0 +1,127 @@
+<?php
+/**
+ * Plugin Name:       Dreamy Tag Cloud Filter
+ * Plugin URI:        https://lewismoten.com/hobbies/
+ * Description:       Generates a tag cloud filtered by categories/tags with exclusion logic.
+ * Version:           1.0.2
+ * Author:            Lewis Moten
+ * Author URI:        https://lewismoten.com/
+ * License:           ISC
+ * Text Domain:       dreamy-tag-cloud
+ * Requires at least: 6.4
+ * Requires PHP:      8.1
+ */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+// Include the widget class
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-dreamy-widget.php';
+
+function register_lewismoten_tag_cloud_widget() {
+    register_widget( 'Dreamy_Tag_Cloud_Widget' );
+}
+add_action( 'widgets_init', 'register_lewismoten_tag_cloud_widget' );
+
+function lewismoten_tag_cloud_shortcode($atts) {
+    $a = shortcode_atts(array(
+        'cat' => '',
+        'tags' =>  '',
+        'exclude'  => '',
+        'title'    => '',
+        'auto_exclude' => true
+    ), $atts);
+
+    $cat_array = !empty($a['cat']) ? array_map('intval', explode(',', $a['cat'])) : array();
+    $tag_array = !empty($a['tags']) ? array_map('intval', explode(',', $a['tags'])) : array();
+    $exclude_array = !empty($a['exclude']) ? array_map('intval', explode(',', $a['exclude'])) : array();
+
+    $a['auto_exclude'] = filter_var( $a['auto_exclude'], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE );
+    if ( $a['auto_exclude'] === null ) {
+        $a['auto_exclude'] = true;
+    }
+
+    ob_start();
+    if(class_exists('Dreamy_Tag_Cloud_Widget')) {
+        the_widget('Dreamy_Tag_Cloud_Widget', array(
+            'title'               => $a['title'],
+            'filter_category_ids' => $cat_array,
+            'filter_tag_ids'      => $tag_array,
+            'exclude_tag_ids'     => $exclude_array,
+            'auto_exclude_filter' => $a['auto_exclude']
+        ));
+    }
+    return ob_get_clean();
+}
+add_shortcode('dreamy_tag_cloud', 'lewismoten_tag_cloud_shortcode');
+
+function lewismoten_flat_ids(&$a, $key) {
+    $raw = $key.'_raw';
+    if ( isset( $a[ $raw ] ) 
+        && is_string( $a[ $raw ] ) 
+        && trim( $a[ $raw ] ) !== '' 
+    ) {
+        $a[ $key ] = $a[ $raw ];
+        return;
+    }
+
+    if ( isset( $a[ $key ] ) && is_array( $a[ $key ] ) ) {
+        $a[ $key ] = implode(
+            ',',
+            array_values(
+                array_filter(
+                    array_map( 'strval', $a[ $key ] ),
+                    static fn( $v ) => $v !== ''
+                )
+            )
+        );
+        return;
+    }
+
+    $a[ $key ] = isset( $a[ $key ] ) ? (string) $a[ $key ] : '';
+}
+function lewismoten_tag_cloud_block_render( $attributes, $content = '', $block = null ) {
+    $attributes = is_array( $attributes ) ? $attributes : array();
+    lewismoten_flat_ids($attributes, 'cat');
+    lewismoten_flat_ids($attributes, 'tags');
+    lewismoten_flat_ids($attributes, 'exclude');
+
+    $html = lewismoten_tag_cloud_shortcode( $attributes );
+    if ( is_admin() ) {
+        $html = preg_replace('/\s+href=("|\').*?\1/i', '', $html);
+    }
+    return $html;
+}
+function register_lewismoten_tag_cloud_block() {
+    register_block_type( __DIR__, array(
+        'render_callback' => 'lewismoten_tag_cloud_block_render',
+    ) );
+}
+add_action( 'init', 'register_lewismoten_tag_cloud_block' );
+
+function lewismoten_tag_cloud_styles() {
+    echo '<style>
+        .tagcloud a { 
+            display: inline-block; margin: 4px; padding: 6px 12px;
+            background: rgba(144, 238, 144, 0.1); color: #2e7d32 !important;
+            border: 1px solid #a5d6a7; border-radius: 20px; text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .tagcloud a:hover { 
+            background: #a5d6a7; color: #fff !important;
+            box-shadow: 0 0 15px rgba(165, 214, 167, 0.6); transform: translateY(-2px);
+        }
+    </style>';
+}
+add_action('wp_head', 'lewismoten_tag_cloud_styles');
+
+function lewismoten_tag_cloud_assets() {
+    $plugin_data = get_plugin_data( __FILE__ );
+    $version = $plugin_data['Version'];
+    wp_enqueue_style(
+        'dreamy-tag-cloud-admin-style',
+        plugins_url( 'admin/admin-style.css', __FILE__ ),
+        array(),
+        $version
+    );
+}
+add_action( 'enqueue_block_editor_assets', 'lewismoten_tag_cloud_assets' );
