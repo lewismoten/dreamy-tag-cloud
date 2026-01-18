@@ -6,7 +6,6 @@
   components: {
     PanelBody,
     TextControl,
-    TextareaControl,
     ToggleControl,
     ComboboxControl,
     Button
@@ -37,8 +36,61 @@
       const attrs = props.attributes || {};
       const blockProps = useBlockProps({ className: `${pluginName}-editor` });
 
+      const [catSearch, setCatSearch] = useState("");
       const [tagSearch, setTagSearch] = useState("");
       const [excludeSearch, setExcludeSearch] = useState("");
+
+      const allCats = useSelect(
+        (select) =>
+          select(coreStore).getEntityRecords("taxonomy", "category", {
+            search: catSearch || undefined,
+            per_page: 50,
+            hide_empty: false,
+            orderby: "name",
+            order: "asc"
+          }),
+        [catSearch]
+      );
+
+      const catOptions = (allCats || []).map((c) => ({
+        label: c.name,
+        value: c.id
+      }));
+
+      const selectedCatIds = Array.isArray(attrs.cat)
+        ? attrs.cat.map(asNumber).filter((n) => n !== null)
+        : [];
+
+      const selectedCats = useSelect(
+        (select) => {
+          if (!selectedCatIds.length) return [];
+          return select(coreStore).getEntityRecords("taxonomy", "category", {
+            include: selectedCatIds,
+            per_page: selectedCatIds.length,
+            hide_empty: false
+          });
+        },
+        [selectedCatIds.join(",")]
+      );
+
+      const catNameById = {};
+      (selectedCats || []).forEach((c) => {
+        catNameById[c.id] = c.name;
+      });
+
+      const addCat = (id) => {
+        const idNum = asNumber(id);
+        if (!idNum) return;
+        if (!selectedCatIds.includes(idNum)) {
+          props.setAttributes({ cat: [...selectedCatIds, idNum] });
+        }
+      };
+
+      const removeCat = (id) => {
+        const idNum = asNumber(id);
+        if (!idNum) return;
+        props.setAttributes({ cat: selectedCatIds.filter((c) => c !== idNum) });
+      };
 
       const allTags = useSelect(
         (select) =>
@@ -57,6 +109,42 @@
         value: t.id
       }));
 
+      const selectedTagIds = Array.isArray(attrs.tags)
+        ? attrs.tags.map(asNumber).filter((n) => n !== null)
+        : [];
+
+      const selectedTags = useSelect(
+        (select) => {
+          if (!selectedTagIds.length) return [];
+          return select(coreStore).getEntityRecords("taxonomy", "post_tag", {
+            include: selectedTagIds,
+            per_page: selectedTagIds.length,
+            hide_empty: false
+          });
+        },
+        [selectedTagIds.join(",")]
+      );
+
+      const tagNameById = {};
+      (selectedTags || []).forEach((t) => {
+        tagNameById[t.id] = t.name;
+      });
+
+      const addTag = (id) => {
+        const idNum = asNumber(id);
+        if (!idNum) return;
+        if (excludeTagIds.includes(idNum)) return;
+        if (!selectedTagIds.includes(idNum)) {
+          props.setAttributes({ tags: [...selectedTagIds, idNum] });
+        }
+      };
+
+      const removeTag = (id) => {
+        const idNum = asNumber(id);
+        if (!idNum) return;
+        props.setAttributes({ tags: selectedTagIds.filter((t) => t !== idNum) });
+      };
+
       const excludeAllTags = useSelect(
         (select) =>
           select(coreStore).getEntityRecords("taxonomy", "post_tag", {
@@ -74,30 +162,9 @@
         value: t.id
       }));
 
-      const selectedTagIds = Array.isArray(attrs.tags)
-        ? attrs.tags.map(asNumber).filter((n) => n !== null)
-        : [];
-
       const excludeTagIds = Array.isArray(attrs.exclude)
         ? attrs.exclude.map(asNumber).filter((n) => n !== null)
         : [];
-
-      const selectedTags = useSelect(
-        (select) => {
-          if (!selectedTagIds.length) return [];
-          return select(coreStore).getEntityRecords("taxonomy", "post_tag", {
-            include: selectedTagIds,
-            per_page: selectedTagIds.length,
-            hide_empty: false
-          });
-        },
-        [selectedTagIds.join(",")]
-      );
-
-      const selectedTagNameById = {};
-      (selectedTags || []).forEach((t) => {
-        selectedTagNameById[t.id] = t.name;
-      });
 
       const excludedTags = useSelect(
         (select) => {
@@ -111,51 +178,24 @@
         [excludeTagIds.join(",")]
       );
 
-      const excludeTagNameById = {};
+      const excludeNameById = {};
       (excludedTags || []).forEach((t) => {
-        excludeTagNameById[t.id] = t.name;
+        excludeNameById[t.id] = t.name;
       });
 
-      const removeTag = (id) => {
+      const addExcludeTag = (id) => {
         const idNum = asNumber(id);
         if (!idNum) return;
-        props.setAttributes({
-          tags: selectedTagIds.filter((t) => t !== idNum)
-        });
-      };
-
-      const addTag = (id) => {
-        const idNum = asNumber(id);
-        if (!idNum) return;
-
-        if (excludeTagIds.includes(idNum)) return;
-
-        if (!selectedTagIds.includes(idNum)) {
-          props.setAttributes({
-            tags: [...selectedTagIds, idNum]
-          });
+        if (selectedTagIds.includes(idNum)) return;
+        if (!excludeTagIds.includes(idNum)) {
+          props.setAttributes({ exclude: [...excludeTagIds, idNum] });
         }
       };
 
       const removeExcludeTag = (id) => {
         const idNum = asNumber(id);
         if (!idNum) return;
-        props.setAttributes({
-          exclude: excludeTagIds.filter((t) => t !== idNum)
-        });
-      };
-
-      const addExcludeTag = (id) => {
-        const idNum = asNumber(id);
-        if (!idNum) return;
-
-        if (selectedTagIds.includes(idNum)) return;
-
-        if (!excludeTagIds.includes(idNum)) {
-          props.setAttributes({
-            exclude: [...excludeTagIds, idNum]
-          });
-        }
+        props.setAttributes({ exclude: excludeTagIds.filter((t) => t !== idNum) });
       };
 
       return el(
@@ -175,14 +215,47 @@
               onChange: (v) => props.setAttributes({ title: v })
             }),
 
-            el(TextareaControl, {
-              label: "Filter Categories (IDs)",
-              help: "Example: 3, 9",
-              value: attrs.cat_raw || "",
-              onChange: (v) => props.setAttributes({ cat_raw: v }),
-              onBlur: () => props.setAttributes({ cat: toNumbers(attrs.cat_raw) })
+            el(ComboboxControl, {
+              label: "Filter Categories",
+              help: "Type to search categories, then click to add",
+              options: catOptions,
+              value: null,
+              onFilterValueChange: (input) => setCatSearch(input || ""),
+              onChange: (catId) => addCat(catId)
             }),
 
+            el(
+              "div",
+              { style: { marginTop: "8px" } },
+              selectedCatIds.length
+                ? el(
+                    "ul",
+                    { style: { margin: 0, paddingLeft: "18px" } },
+                    selectedCatIds.map((id) => {
+                      const label = catNameById[id] || `Category #${id}`;
+                      return el(
+                        "li",
+                        { key: id, style: { display: "flex", gap: "8px", alignItems: "center" } },
+                        el("span", null, label),
+                        el(
+                          Button,
+                          {
+                            isDestructive: true,
+                            isSmall: true,
+                            type: "button",
+                            onClick: (e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              removeCat(id);
+                            }
+                          },
+                          deleteIcon
+                        )
+                      );
+                    })
+                  )
+                : el("div", { style: { opacity: 0.7 } }, "No categories selected yet.")
+            ),
             el(ComboboxControl, {
               label: "Filter Tags",
               help: "Type to search tags, then click to add",
@@ -197,31 +270,31 @@
               { style: { marginTop: "8px" } },
               selectedTagIds.length
                 ? el(
-                  "ul",
-                  { style: { margin: 0, paddingLeft: "18px" } },
-                  selectedTagIds.map((id) => {
-                    const label = selectedTagNameById[id] || `Tag #${id}`;
-                    return el(
-                      "li",
-                      { key: id, style: { display: "flex", gap: "8px", alignItems: "center" } },
-                      el("span", null, label),
-                      el(
-                        Button,
-                        {
-                          isDestructive: true,
-                          isSmall: true,
-                          type: "button",
-                          onClick: (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            removeTag(id);
-                          }
-                        },
-                        deleteIcon
-                      )
-                    );
-                  })
-                )
+                    "ul",
+                    { style: { margin: 0, paddingLeft: "18px" } },
+                    selectedTagIds.map((id) => {
+                      const label = tagNameById[id] || `Tag #${id}`;
+                      return el(
+                        "li",
+                        { key: id, style: { display: "flex", gap: "8px", alignItems: "center" } },
+                        el("span", null, label),
+                        el(
+                          Button,
+                          {
+                            isDestructive: true,
+                            isSmall: true,
+                            type: "button",
+                            onClick: (e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              removeTag(id);
+                            }
+                          },
+                          deleteIcon
+                        )
+                      );
+                    })
+                  )
                 : el("div", { style: { opacity: 0.7 } }, "No filter tags selected yet.")
             ),
 
@@ -245,33 +318,34 @@
               { style: { marginTop: "8px" } },
               excludeTagIds.length
                 ? el(
-                  "ul",
-                  { style: { margin: 0, paddingLeft: "18px" } },
-                  excludeTagIds.map((id) => {
-                    const label = excludeTagNameById[id] || `Tag #${id}`;
-                    return el(
-                      "li",
-                      { key: id, style: { display: "flex", gap: "8px", alignItems: "center" } },
-                      el("span", null, label),
-                      el(
-                        Button,
-                        {
-                          isDestructive: true,
-                          isSmall: true,
-                          type: "button",
-                          onClick: (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            removeExcludeTag(id);
-                          }
-                        },
-                        deleteIcon
-                      )
-                    );
-                  })
-                )
+                    "ul",
+                    { style: { margin: 0, paddingLeft: "18px" } },
+                    excludeTagIds.map((id) => {
+                      const label = excludeNameById[id] || `Tag #${id}`;
+                      return el(
+                        "li",
+                        { key: id, style: { display: "flex", gap: "8px", alignItems: "center" } },
+                        el("span", null, label),
+                        el(
+                          Button,
+                          {
+                            isDestructive: true,
+                            isSmall: true,
+                            type: "button",
+                            onClick: (e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              removeExcludeTag(id);
+                            }
+                          },
+                          deleteIcon
+                        )
+                      );
+                    })
+                  )
                 : el("div", { style: { opacity: 0.7 } }, "No excluded tags yet.")
             ),
+
           )
         ),
 

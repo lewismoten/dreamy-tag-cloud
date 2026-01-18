@@ -13,14 +13,10 @@
     "editorScript": "file:./block.js",
     "attributes": {
         "title": { "type": "string", "default": "" },
-        "auto_exclude": { "type": "boolean", "default": true },
-        
         "cat": { "type": "array", "default": [] },
         "tags": { "type": "array", "default": [] },
-        "exclude": { "type": "array", "default": [] },
-
-        "cat_raw": { "type": "string", "default": "" }
-
+        "auto_exclude": { "type": "boolean", "default": true },        
+        "exclude": { "type": "array", "default": [] }
     },
     "supports": {
         "html": false,
