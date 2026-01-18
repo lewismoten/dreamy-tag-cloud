@@ -1,5 +1,5 @@
-.block-editor-block-types-list__item.editor-block-list-item-lewismoten-dreamy-tag-cloud .block-editor-block-icon,
-.block-editor-block-card__icon.lewismoten-dreamy-tag-cloud {
+.block-editor-block-types-list__item.editor-block-list-item-lewismoten-dreamy-tags .block-editor-block-icon,
+.block-editor-block-card__icon.lewismoten-dreamy-tags {
     background-image: url('../assets/icon-20x20.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -8,8 +8,8 @@
     height: 20px;
 }
 
-.editor-block-list-item-lewismoten-dreamy-tag-cloud svg,
-.lewismoten-dreamy-tag-cloud svg {
+.editor-block-list-item-lewismoten-dreamy-tags svg,
+.lewismoten-dreamy-tags svg {
     display: none !important;
 }
 
@@ -26,7 +26,7 @@
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     text-transform: capitalize;
 }
-.wp-block-lewismoten-dreamy-tag-cloud a {
+.wp-block-lewismoten-dreamy-tags a {
   pointer-events: none;
   cursor: default;
   text-decoration: underline;
@@ -41,10 +41,10 @@
 .widget_dreamy_tags_widget .tagcloud a {
     line-height: 1.2;
 }
-.editor-styles-wrapper .dreamy-tag-cloud-block {
+.editor-styles-wrapper .dreamy-tags-block {
   padding: 8px;
   min-height: 32px;
 }
-.editor-styles-wrapper .dreamy-tag-cloud-preview a {
+.editor-styles-wrapper .dreamy-tags-preview a {
   pointer-events: none;
 }

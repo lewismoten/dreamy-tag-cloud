@@ -13,7 +13,7 @@
   coreData: { store: coreStore }
 }) => {
 
-  const pluginName = 'dreamy-tag-cloud';
+  const pluginName = 'dreamy-tags';
   const typeName = `lewismoten/${pluginName}`;
   const deleteIcon = "×";
 
