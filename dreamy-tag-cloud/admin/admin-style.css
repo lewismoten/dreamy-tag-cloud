@@ -41,11 +41,10 @@
 .widget_dreamy_tag_cloud_widget .tagcloud a {
     line-height: 1.2;
 }
-.editor-styles-wrapper .dreamy-tag-cloud-block a,
-.editor-styles-wrapper .dreamy-tag-cloud-block * {
-  pointer-events: none;
-}
 .editor-styles-wrapper .dreamy-tag-cloud-block {
   padding: 8px;
   min-height: 32px;
+}
+.editor-styles-wrapper .dreamy-tag-cloud-preview a {
+  pointer-events: none;
 }
