@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Dreamy Tags
- * Plugin URI:        https://github.com/lewismoten/dreamy-tag-cloud
+ * Plugin URI:        https://github.com/lewismoten/dreamy-tags
  * Description:       Generates a tag cloud filtered by categories/tags with exclusion logic.
  * Version:           1.0.2
  * Author:            Lewis Moten
