@@ -7,7 +7,7 @@
  * Author:            Lewis Moten
  * Author URI:        https://lewismoten.com/
  * License:           ISC
- * Text Domain:       dreamy-tag-cloud
+ * Text Domain:       dreamy-tags
  * Requires at least: 6.4
  * Requires PHP:      8.1
  */
@@ -15,7 +15,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Include the widget class
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-dreamy-widget.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-dreamy-tags-widget.php';
 
 function register_lewismoten_dreamy_tags_widget() {
     register_widget( 'Dreamy_Tags_Widget' );
