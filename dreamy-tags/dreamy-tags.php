@@ -3,7 +3,7 @@
  * Plugin Name:       Dreamy Tags
  * Plugin URI:        https://github.com/lewismoten/dreamy-tags
  * Description:       Generates a tag cloud filtered by categories/tags with exclusion logic.
- * Version:           1.0.44
+ * Version:           1.0.45
  * Author:            Lewis Moten
  * Author URI:        https://lewismoten.com/
  * License:           GPLv2
@@ -29,14 +29,14 @@ function lewismoten_dreamy_tags_shortcode($atts) {
         'tags' =>  '',
         'exclude'  => '',
         'auto_exclude' => true,
-        'min_count' => 1,
+        'min_count' => 2,
     ), $atts);
 
     $cat_array = !empty($a['cat']) ? array_map('intval', explode(',', $a['cat'])) : array();
     $tag_array = !empty($a['tags']) ? array_map('intval', explode(',', $a['tags'])) : array();
     $exclude_array = !empty($a['exclude']) ? array_map('intval', explode(',', $a['exclude'])) : array();
     
-    $a['min_count'] = isset($a['min_count']) ? max(1, intval($a['min_count'])) : 1;
+    $a['min_count'] = isset($a['min_count']) ? max(1, intval($a['min_count'])) : 2;
 
     $a['auto_exclude'] = filter_var( $a['auto_exclude'], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE );
     if ( $a['auto_exclude'] === null ) {

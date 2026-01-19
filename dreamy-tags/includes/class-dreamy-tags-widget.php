@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Dreamy Tags
  * Description: Generates a tag cloud filtered by category and specific tags, with exclusion logic.
- * Version: 1.0.44
+ * Version: 1.0.45
  * Author: Lewis Moten
  */
 
@@ -25,7 +25,7 @@ class Dreamy_Tags_Widget extends WP_Widget {
         $min_font = 8;
         $max_font = 22;
 
-        $min_count = isset( $instance['min_count'] ) ? max( 1, intval( $instance['min_count'] ) ) : 1;
+        $min_count = isset( $instance['min_count'] ) ? max( 1, intval( $instance['min_count'] ) ) : 2;
 
         // 3. Handle Exclusions (define this BEFORE any counting)
         $exclude_tag_ids = ! empty( $instance['exclude_tag_ids'] ) ? array_map( 'intval', (array) $instance['exclude_tag_ids'] ) : array();

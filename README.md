@@ -21,7 +21,7 @@ All arguments are optional.
 * `tags` - Tag IDs a post must belong to (at least one)
 * `exclude` - Tag IDs excluded from the cloud
 * `auto_exclude` (boolean, default: true) - Excludes filter tags from the cloud
-* `min_count` - (number, default: 1) - Minimum number of occurrences a tag must appear across the filtered posts
+* `min_count` - (number, default: 2) - Minimum number of occurrences a tag must appear across the filtered posts
 
 ## Block Editor
 

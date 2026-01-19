@@ -403,8 +403,8 @@
               help: "Only show tags used on at least this many matching posts.",
               min: 1,
               max: 50,
-              value: Number.isFinite(attrs.min_count) ? attrs.min_count : 1,
-              onChange: (v) => props.setAttributes({ min_count: v || 1 })
+              value: Number.isFinite(attrs.min_count) ? attrs.min_count : 2,
+              onChange: (v) => props.setAttributes({ min_count: v || 2 })
             })
           )
         ),

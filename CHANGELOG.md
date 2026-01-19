@@ -22,3 +22,6 @@
 ## 1.0.44 - 2026-01-19
 - Fixing fatal error
 
+## 1.0.45 - 2026-01-19
+- Minimum occurrences defaults to 2
+
