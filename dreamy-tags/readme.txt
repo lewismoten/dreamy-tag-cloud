@@ -16,6 +16,15 @@ A specialized tag cloud generator designed for archives. It allows you to filter
 
 == Changelog ==
 
+= 1.0.40 =
+* stop injecting two lines after last changelog item in readme
+
+= 1.0.39 =
+* converted unicode multiplication sign to ascii
+
+= 1.0.38 =
+* Update version in all files
+
 = 1.0.34 =
 * Changed license from ISC to GPLv2
 * Append change log via build script

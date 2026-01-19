@@ -34,5 +34,5 @@ The code block settings map to the short code.
 1. Open Terminal.
 2. Navigate to your project folder (type `cd` and drag the folder in).
 3. Run this command to make the script executable: `chmod +x build.sh`
-4. Execute the script `./build.sh`
+4. Execute the script `./build.sh -c "Building plugin myself"`
 5. Upload the `dreamy-tags-v#.#.#.zip` to your wordpress plugin dashboard.

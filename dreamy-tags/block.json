@@ -6,7 +6,7 @@
     "category": "design",
     "description": "Display a filtered cloud of tags.",
     "keywords": ["tag", "cloud", "filter", "lewismoten"],
-    "version": "1.0.1",
+    "version": "1.0.40",
     "textdomain": "dreamy-tags",
     "icon": "cloud",
     "editorStyle": "file:./admin/admin-style.css",

@@ -20,6 +20,10 @@ while getopts ":c:" opt; do
                 echo "Error: Changelog entry must be at least 8 characters: \"$OPTARG\""
                 exit 1
             fi
+            if [ ${#OPTARG} -gt 60 ]; then
+                echo "Error: Changelog entry must be no more than 60 characters: \"$OPTARG\""
+                exit 1
+            fi
             CHANGELOG_ENTRIES+=("$OPTARG")
             ;;
         \?)
@@ -108,7 +112,6 @@ while IFS= read -r line; do
         for entry in "${CHANGELOG_ENTRIES[@]}"; do
             echo "* $entry" >> "$tmp2"
         done
-        echo "" >> "$tmp2"
         inserted_entries=1
     fi
 done < "$tmp"
@@ -124,14 +127,16 @@ for entry in "${CHANGELOG_ENTRIES[@]}"; do
 done
 echo "" >> "$CHANGELOG_FILE"
 
+echo "Injecting version $VERSION into files..."
+sed -i '' "s/Version:           .*/Version:           $VERSION/" "$PLUGIN_DIR/$PLUGIN_DIR.php"
+sed -i '' "s/\* Version: .*/* Version: $VERSION/" "$PLUGIN_DIR/includes/class-$PLUGIN_DIR-widget.php"
+sed -i '' "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" "$PLUGIN_DIR/block.json"
+
+
 rm -rf "$BUILD_DIR"
 rm -f *.zip
 mkdir -p "$BUILD_DIR/$PLUGIN_DIR"
 cp -R "$PLUGIN_DIR/" "$BUILD_DIR/$PLUGIN_DIR/"
-
-echo "Injecting version $VERSION into files..."
-sed -i '' "s/Version:           .*/Version:           $VERSION/" "$BUILD_DIR/$PLUGIN_DIR/$PLUGIN_DIR.php"
-sed -i '' "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" "$BUILD_DIR/$PLUGIN_DIR/block.json"
 
 echo "Standardizing file encodings..."
 find "$BUILD_DIR/$PLUGIN_DIR" -type f \( -name "*.php" -o -name "*.css" -o -name "*.txt" -o -name "*.json" \) | while read -r file; do
