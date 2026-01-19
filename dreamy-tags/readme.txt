@@ -3,16 +3,21 @@ Contributors: lewismoten
 Tags: tag cloud, cloud, filter, tags, categories, widget, taxonomy
 Requires at least: 6.9
 Tested up to: 6.9
-Stable tag: 1.0.26
+Stable tag: 1.0.40
 License: GPLv2
 
 == Description ==
-A specialized tag cloud generator designed for archives. It allows you to filter tags based on specific categories while excluding the "organizational" tags from the cloud visual.
+A specialized tag cloud generator designed for archive and taxonomy views. It allows you to filter tags based on specific categories while excluding the "organizational" tags from the cloud visual.
 
 == Installation ==
 1. Upload the `dreamy-tags` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Add the "Dreamy Tags" widget to your sidebar via Appearance > Widgets or the Site Editor.
+
+== Upgrade Notice ==
+
+= 1.0.40 =
+Initial debut. No prior release on WordPress.
 
 == Changelog ==
 

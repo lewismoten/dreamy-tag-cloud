@@ -36,3 +36,11 @@ The code block settings map to the short code.
 3. Run this command to make the script executable: `chmod +x build.sh`
 4. Execute the script `./build.sh -c "Building plugin myself"`
 5. Upload the `dreamy-tags-v#.#.#.zip` to your wordpress plugin dashboard.
+
+### Stable Build
+
+To mark a stable release, pass the `-s` or `--stable` argument along with `-c` changes meant for user-impacting changes. If nothing is impacting the following command will suffice.
+
+`./build.sh -s -c "No functional changes. Safe to update."`
+
+The dreamy-tags/readme.txt file will update the Stable Tag with the current version in `version.txt`, and add a new entry under `== Upgrade Notice ==` for the current version. Multiple `-c` changes are supported, but they will be delimited with semicolons.
