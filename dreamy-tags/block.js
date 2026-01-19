@@ -16,7 +16,7 @@
 
   const pluginName = 'dreamy-tags';
   const typeName = `lewismoten/${pluginName}`;
-  const deleteIcon = "×";
+  const deleteIcon = "\u00D7"; // multiplication sign for ascii-only source file
 
   const asNumber = (value) => {
     const n = Number(value);
