@@ -36,6 +36,19 @@ Block settings map directly to the shortcode options:
 * **Auto-exclude filtered tags** - Filter tags will not appear in the cloud
 * **Minimum posts per tag** - Required number of appearances before a tag is shown
 
+## Performance
+
+Developers may adjust the maximum number of posts scanned by the block
+using the `dreamy_tags_max_posts` filter.
+
+Default: 2000
+
+```php
+add_filter( 'dreamy_tags_max_posts', function () {
+    return 10000;
+});
+```
+
 ## Install
 
 Install **Dreamy Tags** directly from the WordPress Plugin Directory:

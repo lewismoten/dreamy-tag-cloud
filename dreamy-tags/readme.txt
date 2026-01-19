@@ -31,6 +31,17 @@ You can install Dreamy Tags directly from the WordPress Plugin Directory.
 Source code and build tools are maintained publicly on GitHub: https://github.com/lewismoten/dreamy-tags
 Build instructions are documented in the repository README.
 
+== Developer Notes ==
+Developers may adjust the maximum number of posts scanned by the block
+using the `dreamy_tags_max_posts` filter.
+
+Default: 2000
+
+Example:
+add_filter( 'dreamy_tags_max_posts', function () {
+    return 10000;
+});
+
 == License ==
 
 This plugin is licensed under the GPLv2 or later.

@@ -64,15 +64,18 @@ class Dreamy_Tags_Widget extends WP_Widget {
             $exclude_tag_ids = array_unique( array_merge( $exclude_tag_ids, $filter_tag_ids ) );
         }
         $children = $this->get_bool($instance, 'children', true);
+        $limit = (int) apply_filters( 'dreamy_tags_max_posts', 2000, $instance );
 
         // 1. Get all post IDs that match the filters
         $post_args = array(
-            'posts_per_page'         => 1000,
+            'posts_per_page'         => $limit,
             'fields'                 => 'ids',
             'post_type'              => 'post',
             'no_found_rows'          => true,
             'update_post_meta_cache' => false,
-            'update_post_term_cache' => false
+            'update_post_term_cache' => false,
+            'ignore_sticky_posts'    => true,
+            'post_status'            => 'publish'
         );
 
         $tax_query = array();
