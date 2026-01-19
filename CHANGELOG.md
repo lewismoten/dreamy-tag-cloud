@@ -19,3 +19,6 @@
 ## 1.0.43 - 2026-01-19
 - Fixed spelling and added semicolon
 
+## 1.0.44 - 2026-01-19
+- Fixing fatal error
+

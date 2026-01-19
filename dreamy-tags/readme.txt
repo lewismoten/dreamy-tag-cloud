@@ -31,6 +31,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.44 =
+* Fixing fatal error
+
 = 1.0.43 =
 * Fixed spelling and added semicolon
 
