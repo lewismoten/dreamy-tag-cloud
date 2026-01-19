@@ -57,6 +57,7 @@ if [ "$STABLE_RELEASE" = true ]; then
     # Now parse changelog/notice entries (-c and/or positional)
     CHANGELOG_ENTRIES=()
 
+    OPTIND=1
     while getopts ":c:" opt; do
         case "$opt" in
             c)
@@ -124,6 +125,7 @@ else
 
     # Changelog
     CHANGELOG_ENTRIES=()
+    OPTIND=1
     while getopts ":c:" opt; do
         case $opt in
             c)
