@@ -10,14 +10,20 @@ License: GPLv2
 A specialized tag cloud generator designed for archive and taxonomy views. It allows you to filter tags based on specific categories while excluding the "organizational" tags from the cloud visual.
 
 == Installation ==
+You can install Dreamy Tags directly from the WordPress Plugin Directory.
+
 1. Upload the `dreamy-tags` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Add the "Dreamy Tags" widget to your sidebar via Appearance > Widgets or the Site Editor.
 
+== Development ==
+Source code and build tools are maintained publicly on GitHub: https://github.com/lewismoten/dreamy-tags
+Build instructions are documented in the repository README.
+
 == Upgrade Notice ==
 
 = 1.0.40 =
-Initial debut. No prior release on WordPress.
+Initial WordPress.org release.
 
 == Changelog ==
 
