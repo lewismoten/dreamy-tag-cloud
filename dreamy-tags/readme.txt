@@ -1,6 +1,6 @@
 === Dreamy Tags ===
 Contributors: lewismoten
-Tags: tag cloud, cloud, filter, tags, categories, widget, taxonomy
+Tags: tag cloud, taxonomy, categories, filter, widget
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4

@@ -6,13 +6,11 @@
     "category": "design",
     "description": "Display a filtered cloud of tags.",
     "keywords": [
-        "tags",
+        "tag cloud",
         "categories",
         "dreamy tags",
-        "cloud",
         "filter",
-        "taxonomy",
-        "lewismoten"
+        "taxonomy"
     ],
     "version": "1.0.47",
     "textdomain": "dreamy-tags",

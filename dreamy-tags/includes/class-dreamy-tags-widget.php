@@ -213,6 +213,10 @@ class Dreamy_Tags_Widget extends WP_Widget {
             $term_url   = get_term_link( $term );
             $term_url   = is_wp_error( $term_url ) ? '' : $term_url;
 
+            if( empty( $term_url ) ) {
+                continue;
+            }
+
             $name = $term->name;
 
             $tid = (int) $term->term_id;
@@ -228,12 +232,11 @@ class Dreamy_Tags_Widget extends WP_Widget {
             $count_attr = (int)$c;
 
             printf(
-                '<a href="%s" class="dreamy-tags-link-%d" style="font-size: %.2fpt" aria-label="%s (%d)">%s</a> ',
+                '<a href="%1$s" class="dreamy-tags-link-%2$s" style="font-size:%3$spt" aria-label="%4$s">%5$s</a> ',
                 esc_url($term_url),
-                $tid_attr,
-                $size_attr,
-                esc_attr($name),
-                $count_attr,
+                esc_attr((string)$tid_attr),
+                esc_attr(number_format_i18n((float)$size_attr, 2)),
+                esc_attr(sprintf('%s (%d)', $name, (int)$count_attr)),
                 esc_html($name)
             );
         }
