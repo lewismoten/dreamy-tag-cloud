@@ -4,7 +4,7 @@ Tags: tag cloud, taxonomy, categories, filter, widget
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.50
+Stable tag: 1.0.73
 License: GPLv2 or later
 
 Dreamy Tags displays a customizable tag cloud filtered by categories and tags for clean, meaningful blog and archive navigation.
@@ -50,76 +50,21 @@ All artwork and icons included with this plugin were created by the author and a
 
 == Upgrade Notice ==
 
+= 1.0.73 =
+This release focuses on editor compatibility and stability. It resolves multiple Gutenberg UI deprecation warnings, updates the block icon from PNG to SVG for better scaling and clarity, and improves asset handling. Recommended for all users, especially those running recent versions of WordPress.
+
 = 1.0.50 =
 Initial WordPress.org release.
 
 == Changelog ==
 
 = 1.0.73 =
-* revert svg in block logic (#8)
-
-= 1.0.72 =
-* svg icon in block.json (#8)
-
-= 1.0.71 =
-* bring back svg icon (#8)
-
-= 1.0.70 =
-* fix second Toggle control warning (#8)
-
-= 1.0.69 =
-* fix next warnings for Toggle control (#8)
-
-= 1.0.68 =
-* fix next warnings for UI controls (#8)
-
-= 1.0.67 =
-* fix warning for ComboBox size (#8)
-
-= 1.0.66 =
-* remove dupe/alt style loading (#8)
-
-= 1.0.65 =
-* use createElement alias (#8)
-
-= 1.0.64 =
-* fix version in canonical header (#8)
-
-= 1.0.63 =
-* fix block icon with svg (#8)
-
-= 1.0.62 =
-* do not inject version in widget (#8)
-
-= 1.0.61 =
-* avoid confusing plugin installer (#8)
-
-= 1.0.60 =
-* separate images from directory assets (#8)
-
-= 1.0.59 =
-* fix nested double-quotes (#8)
-
-= 1.0.58 =
-* canonical header and abspath style (#8)
-
-= 1.0.57 =
-* load language for text domain (#8)
-
-= 1.0.56 =
-* exclude directory assets (#8)
-
-= 1.0.55 =
-* include non-directory assets (#8)
-
-= 1.0.54 =
-* consolidate unique prefix (#8)
-
-= 1.0.53 =
-* use wp_enqueue commands for styles (#8)
-
-= 1.0.51 =
-* exclude directory assets (#8)
+* Addressed plugin reviewer feedback.
+* Improved block editor compatibility with upcoming WordPress versions.
+* Updated the block icon from PNG to SVG for better scaling and clarity.
+* Cleaned up asset handling and plugin packaging.
+* Consolidated unique prefixes and standardized enqueue usage.
+* Removed conflicting widget headers to avoid installation issues.
 
 = 1.0.50 =
 * Add explicit license disclosure for bundled artwork
