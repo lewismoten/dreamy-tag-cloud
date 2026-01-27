@@ -40,3 +40,6 @@
 ## 1.0.51 - 2026-01-27
 - exclude directory assets (#8)
 
+## 1.0.53 - 2026-01-27
+- use wp_enqueue commands for styles (#8)
+

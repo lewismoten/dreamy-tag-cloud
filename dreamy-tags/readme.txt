@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.53 =
+* use wp_enqueue commands for styles (#8)
+
 = 1.0.51 =
 * exclude directory assets (#8)
 
