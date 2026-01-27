@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.61 =
+* avoid confusing plugin installer (#8)
+
 = 1.0.60 =
 * separate images from directory assets (#8)
 

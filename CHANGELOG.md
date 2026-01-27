@@ -64,3 +64,6 @@
 ## 1.0.60 - 2026-01-27
 - separate images from directory assets (#8)
 
+## 1.0.61 - 2026-01-27
+- avoid confusing plugin installer (#8)
+
