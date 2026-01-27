@@ -233,9 +233,8 @@ else
     echo "" >> "$CHANGELOG_FILE"
 
     echo "Injecting version $VERSION into files..."
-    sed -i '' "s/Version:           .*/Version:           $VERSION/" "$PLUGIN_DIR/$PLUGIN_DIR.php"
+    sed -i '' "s/Version: .*/Version: $VERSION/" "$PLUGIN_DIR/$PLUGIN_DIR.php"
     sed -i '' "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" "$PLUGIN_DIR/block.json"
-    #sed -i '' -E "s/dreamy-tags-v[X#0-9]+\.[Y#0-9]+\.[Z#0-9]+\.zip/dreamy-tags-v${VERSION}.zip/g" "$README_MD"
 fi
 
 

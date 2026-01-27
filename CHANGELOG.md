@@ -73,3 +73,6 @@
 ## 1.0.63 - 2026-01-27
 - fix block icon with svg (#8)
 
+## 1.0.64 - 2026-01-27
+- fix version in canonical header (#8)
+

@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.64 =
+* fix version in canonical header (#8)
+
 = 1.0.63 =
 * fix block icon with svg (#8)
 
