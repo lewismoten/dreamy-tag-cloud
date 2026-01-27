@@ -97,3 +97,6 @@
 ## 1.0.71 - 2026-01-27
 - bring back svg icon (#8)
 
+## 1.0.72 - 2026-01-27
+- svg icon in block.json (#8)
+
