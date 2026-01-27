@@ -52,3 +52,6 @@
 ## 1.0.56 - 2026-01-27
 - exclude directory assets (#8)
 
+## 1.0.57 - 2026-01-27
+- load language for text domain (#8)
+

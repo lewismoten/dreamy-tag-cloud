@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.57 =
+* load language for text domain (#8)
+
 = 1.0.56 =
 * exclude directory assets (#8)
 
