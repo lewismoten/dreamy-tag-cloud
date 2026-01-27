@@ -70,3 +70,6 @@
 ## 1.0.62 - 2026-01-27
 - do not inject version in widget (#8)
 
+## 1.0.63 - 2026-01-27
+- fix block icon with svg (#8)
+
