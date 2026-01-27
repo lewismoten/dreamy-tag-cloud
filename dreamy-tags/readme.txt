@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.55 =
+* include non-directory assets (#8)
+
 = 1.0.54 =
 * consolidate unique prefix (#8)
 

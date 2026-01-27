@@ -46,3 +46,6 @@
 ## 1.0.54 - 2026-01-27
 - consolidate unique prefix (#8)
 
+## 1.0.55 - 2026-01-27
+- include non-directory assets (#8)
+

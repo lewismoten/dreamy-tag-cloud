@@ -256,7 +256,13 @@ cp "LICENSE.md" "$BUILD_DIR/$PLUGIN_DIR"
 echo "Zipping distribution..."
 ZIP_NAME="${PLUGIN_DIR}-v${VERSION}.zip"
 cd "$BUILD_DIR"
-zip -rX9 "../$ZIP_NAME" "$PLUGIN_DIR" -x "$PLUGIN_DIR/assets/*" -x "*.DS_Store" -x "__MACOSX" -x "*/.DS_Store"
+zip -rX9 "../$ZIP_NAME" "$PLUGIN_DIR" \
+ -x "$PLUGIN_DIR/assets/*" \
+ -i "$PLUGIN_DIR/assets/icon-20x20.png" \
+ -i "$PLUGIN_DIR/assets/block-preview.png" \
+ -x "*.DS_Store" \
+ -x "__MACOSX" \
+ -x "*/.DS_Store"
 cd ..
 
 echo "Cleanup"
