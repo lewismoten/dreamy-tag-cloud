@@ -76,3 +76,6 @@
 ## 1.0.64 - 2026-01-27
 - fix version in canonical header (#8)
 
+## 1.0.65 - 2026-01-27
+- use createElement alias (#8)
+

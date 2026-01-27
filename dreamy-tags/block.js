@@ -1,5 +1,3 @@
-const { createElement } = require("react");
-
 (({
   serverSideRender,
   blocks: { registerBlockType },
@@ -107,10 +105,10 @@ const { createElement } = require("react");
     .trim()
     .replace(/\s+/g, ' ');
 
-  const icon = createElement(
+  const icon = el(
     'svg',
     { viewBox: '0 0 20 20', xmlns: 'http://www.w3.org/2000/svg' },
-    createElement('path', { d: ICON_D, fill: 'currentColor' })
+    el('path', { d: ICON_D, fill: 'currentColor' })
   );
 
   registerBlockType('lewismoten/dreamy-tags', {

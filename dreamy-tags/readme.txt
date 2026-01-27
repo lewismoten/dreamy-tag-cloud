@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.65 =
+* use createElement alias (#8)
+
 = 1.0.64 =
 * fix version in canonical header (#8)
 
