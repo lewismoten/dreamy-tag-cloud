@@ -67,3 +67,6 @@
 ## 1.0.61 - 2026-01-27
 - avoid confusing plugin installer (#8)
 
+## 1.0.62 - 2026-01-27
+- do not inject version in widget (#8)
+

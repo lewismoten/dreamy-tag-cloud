@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.62 =
+* do not inject version in widget (#8)
+
 = 1.0.61 =
 * avoid confusing plugin installer (#8)
 
