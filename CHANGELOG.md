@@ -49,3 +49,6 @@
 ## 1.0.55 - 2026-01-27
 - include non-directory assets (#8)
 
+## 1.0.56 - 2026-01-27
+- exclude directory assets (#8)
+
