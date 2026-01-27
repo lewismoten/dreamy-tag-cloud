@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.73 =
+* revert svg in block logic (#8)
+
 = 1.0.72 =
 * svg icon in block.json (#8)
 

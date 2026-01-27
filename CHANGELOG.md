@@ -100,3 +100,6 @@
 ## 1.0.72 - 2026-01-27
 - svg icon in block.json (#8)
 
+## 1.0.73 - 2026-01-27
+- revert svg in block logic (#8)
+
