@@ -58,3 +58,6 @@
 ## 1.0.58 - 2026-01-27
 - canonical header and abspath style (#8)
 
+## 1.0.59 - 2026-01-27
+- fix nested double-quotes (#8)
+

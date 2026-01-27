@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Dreamy Tags
  * Description: A specialized tag cloud generator designed for blogs, archives, and taxonomy-based layouts. Dreamy Tags allows you to filter displayed tags by category, exclude organizational tags, and control minimum usage thresholds for cleaner, more meaningful tag clouds.
- * Version: 1.0.58
+ * Version: 1.0.59
  * Author: Lewis Moten
  */
 
@@ -237,7 +237,7 @@ class LewismotenDreamyTagsWidget extends WP_Widget {
             $count_attr = (int)$c;
 
             printf(
-                "<a href="%1$s" class="lewismoten-dreamy-tags-link-%2$s" style="font-size:%3$spt" aria-label="%4$s">%5$s</a> ",
+                '<a href="%1$s" class="lewismoten-dreamy-tags-link-%2$s" style="font-size:%3$spt" aria-label="%4$s">%5$s</a> ',
                 esc_url($term_url),
                 esc_attr((string)$tid_attr),
                 esc_attr(number_format_i18n((float)$size_attr, 2)),

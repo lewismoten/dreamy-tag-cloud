@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.59 =
+* fix nested double-quotes (#8)
+
 = 1.0.58 =
 * canonical header and abspath style (#8)
 
