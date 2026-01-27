@@ -61,3 +61,6 @@
 ## 1.0.59 - 2026-01-27
 - fix nested double-quotes (#8)
 
+## 1.0.60 - 2026-01-27
+- separate images from directory assets (#8)
+

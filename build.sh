@@ -257,10 +257,7 @@ echo "Zipping distribution..."
 ZIP_NAME="${PLUGIN_DIR}-v${VERSION}.zip"
 cd "$BUILD_DIR"
 zip -rX9 "../$ZIP_NAME" "$PLUGIN_DIR" \
- -x "$PLUGIN_DIR/assets/banner*" \
- -x "$PLUGIN_DIR/assets/screenshot*" \
- -x "$PLUGIN_DIR/assets/icon-128x128.png" \
- -x "$PLUGIN_DIR/assets/icon-256x256.png" \
+ -x "$PLUGIN_DIR/assets/*" \
  -x "*.DS_Store" \
  -x "__MACOSX" \
  -x "*/.DS_Store"

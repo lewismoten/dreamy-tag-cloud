@@ -152,7 +152,7 @@ function lewismoten_dreamy_tags_assets() {
     );
     wp_localize_script($name, 'lewismoten_dreamy_tags_block',
         array(
-            'previewImage' => plugins_url( 'assets/block-preview.png', __FILE__ ),
+            'previewImage' => plugins_url( 'images/block-preview.png', __FILE__ ),
         )
     );
     wp_enqueue_script($name);
