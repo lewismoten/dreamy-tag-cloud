@@ -37,3 +37,6 @@
 ## 1.0.50 - 2026-01-19
 - address performance
 
+## 1.0.51 - 2026-01-27
+- exclude directory assets (#8)
+

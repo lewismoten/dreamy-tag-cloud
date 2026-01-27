@@ -55,6 +55,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.51 =
+* exclude directory assets (#8)
+
 = 1.0.50 =
 * Add explicit license disclosure for bundled artwork
 * Minimum occurrences defaults to 2
