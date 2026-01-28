@@ -234,6 +234,7 @@ else
 
     echo "Injecting version $VERSION into files..."
     sed -i '' "s/Version: .*/Version: $VERSION/" "$PLUGIN_DIR/$PLUGIN_DIR.php"
+    sed -i '' "s/\$version = '.*';/\$version = '$VERSION';/" "$PLUGIN_DIR/$PLUGIN_DIR.php"
     sed -i '' "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" "$PLUGIN_DIR/block.json"
 fi
 
