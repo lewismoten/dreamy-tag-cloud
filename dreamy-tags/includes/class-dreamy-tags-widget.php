@@ -235,7 +235,7 @@ class dreamy_tags_widget extends WP_Widget {
                 '<a href="%1$s" class="dreamy-tags-link-%2$s" style="font-size:%3$spt" aria-label="%4$s">%5$s</a> ',
                 esc_url($term_url),
                 esc_attr((string)$tid_attr),
-                esc_attr(number_format_i18n((float)$size_attr, 2)),
+                esc_attr(number_format((float)$size_attr, 2,  '.', '')),
                 esc_attr(sprintf('%s (%d)', $name, (int)$count_attr)),
                 esc_html($name)
             );
