@@ -58,6 +58,9 @@ Initial WordPress.org release.
 
 == Changelog ==
 
+= 1.0.76 =
+* fix typo (#8)
+
 = 1.0.75 =
 * generic function names (#8)
 
