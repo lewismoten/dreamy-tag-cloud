@@ -15,7 +15,7 @@ class dreamy_tags_widget extends WP_Widget {
 
     public function widget( $args, $instance ) {
         echo wp_kses_post( $args['before_widget'] );
-        $this->actual_widget($instance);
+        $this->actual_widget( $args, $instance );
         echo wp_kses_post( $args['after_widget'] );
     }
 
@@ -44,7 +44,7 @@ class dreamy_tags_widget extends WP_Widget {
         }
         return max( (int) $min, (int) $instance[ $name ] );
     }
-    private function actual_widget($instance) {
+    private function actual_widget( $args, $instance ) {
 
         $no_tags_found = 'No matching tags found.';
         $min_font = 8;
