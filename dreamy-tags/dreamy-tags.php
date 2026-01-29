@@ -20,17 +20,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Include the widget class
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-dreamy-tags-widget.php';
 
-function lewismoten_dreamy_tags_version() {
+function dreamy_tags_version() {
     $version = '1.0.74';
     return $version;
 }
 
-function lewismoten_dreamy_tags_register_widget() {
-    register_widget( 'LewismotenDreamyTagsWidget' );
+function dreamy_tags_register_widget() {
+    register_widget( 'dream_tags_widget' );
 }
-add_action( 'widgets_init', 'lewismoten_dreamy_tags_register_widget' );
+add_action( 'widgets_init', 'dreamy_tags_register_widget' );
 
-function lewismoten_dreamy_tags_shortcode($atts) {
+function dreamy_tags_shortcode($atts) {
     $a = shortcode_atts(array(
         'cat' => '',
         'children' => false,
@@ -57,8 +57,8 @@ function lewismoten_dreamy_tags_shortcode($atts) {
     }
 
     ob_start();
-    if(class_exists('LewismotenDreamyTagsWidget')) {
-        the_widget('LewismotenDreamyTagsWidget', array(
+    if(class_exists('dream_tags_widget')) {
+        the_widget('dream_tags_widget', array(
             'filter_category_ids' => $cat_array,
             'children'            => $a['children'],
             'filter_tag_ids'      => $tag_array,
@@ -69,9 +69,9 @@ function lewismoten_dreamy_tags_shortcode($atts) {
     }
     return ob_get_clean();
 }
-add_shortcode('dreamy_tags', 'lewismoten_dreamy_tags_shortcode');
+add_shortcode('dreamy_tags', 'dreamy_tags_shortcode');
 
-function lewismoten_dreamy_tags_flat_ids(&$a, $key) {
+function dreamy_tags_flat_ids(&$a, $key) {
     if ( isset( $a[ $key ] ) && is_array( $a[ $key ] ) ) {
         $a[ $key ] = implode(
             ',',
@@ -87,46 +87,46 @@ function lewismoten_dreamy_tags_flat_ids(&$a, $key) {
 
     $a[ $key ] = isset( $a[ $key ] ) ? (string) $a[ $key ] : '';
 }
-function lewismoten_dreamy_tags_block_render( $attributes, $content = '', $block = null ) {
+function dreamy_tags_block_render( $attributes, $content = '', $block = null ) {
     $attributes = is_array( $attributes ) ? $attributes : array();
-    lewismoten_dreamy_tags_flat_ids($attributes, 'cat');
-    lewismoten_dreamy_tags_flat_ids($attributes, 'tags');
-    lewismoten_dreamy_tags_flat_ids($attributes, 'exclude_tags');
+    dreamy_tags_flat_ids($attributes, 'cat');
+    dreamy_tags_flat_ids($attributes, 'tags');
+    dreamy_tags_flat_ids($attributes, 'exclude_tags');
 
-    $html = lewismoten_dreamy_tags_shortcode( $attributes );
+    $html = dreamy_tags_shortcode( $attributes );
     if ( is_admin() ) {
         $html = preg_replace('/\s+href=("|\').*?\1/i', '', $html);
     }
     return $html;
 }
-function lewismoten_dreamy_tags_register_block_render() {
+function dreamy_tags_register_block_render() {
     register_block_type( __DIR__, array(
-        'render_callback' => 'lewismoten_dreamy_tags_block_render',
+        'render_callback' => 'dreamy_tags_block_render',
     ) );
 }
-add_action( 'init', 'lewismoten_dreamy_tags_register_block_render' );
+add_action( 'init', 'dreamy_tags_register_block_render' );
 
-function lewismoten_dreamy_tags_styles() {
-    $version = lewismoten_dreamy_tags_version();
-    wp_register_style('lewismoten_dreamy_tags_styles', false, array(), $version);
-    wp_enqueue_style('lewismoten_dreamy_tags_styles');
-    wp_add_inline_style('lewismoten_dreamy_tags_styles', "
-        .lewismoten-dreamy-tags a { 
+function dreamy_tags_styles() {
+    $version = dreamy_tags_version();
+    wp_register_style('dreamy_tags_styles', false, array(), $version);
+    wp_enqueue_style('dreamy_tags_styles');
+    wp_add_inline_style('dreamy_tags_styles', "
+        .dreamy-tags a { 
             display: inline-block; margin: 4px; padding: 6px 12px;
             background: rgba(144, 238, 144, 0.1); color: #2e7d32 !important;
             border: 1px solid #a5d6a7; border-radius: 20px; text-decoration: none;
             transition: all 0.3s ease;
         }
-        .lewismoten-dreamy-tags a:hover { 
+        .dreamy-tags a:hover { 
             background: #a5d6a7; color: #fff !important;
             box-shadow: 0 0 15px rgba(165, 214, 167, 0.6); transform: translateY(-2px);
         }
     ");
 }
-add_action('wp_head', 'lewismoten_dreamy_tags_styles');
-function lewismoten_dreamy_tags_assets() {
-    $version = lewismoten_dreamy_tags_version();
-    $name = 'lewismoten_dreamy_tags_block_editor';
+add_action('wp_head', 'dreamy_tags_styles');
+function dreamy_tags_assets() {
+    $version = dreamy_tags_version();
+    $name = 'dreamy_tags_block_editor';
 
     wp_register_script(
         $name,
@@ -143,11 +143,11 @@ function lewismoten_dreamy_tags_assets() {
         $version,
         true
     );
-    wp_localize_script($name, 'lewismoten_dreamy_tags_block',
+    wp_localize_script($name, 'dreamy_tags_block',
         array(
             'previewImage' => plugins_url( 'images/block-preview.png', __FILE__ ),
         )
     );
     wp_enqueue_script($name);
 }
-add_action( 'enqueue_block_editor_assets', 'lewismoten_dreamy_tags_assets' );
+add_action( 'enqueue_block_editor_assets', 'dreamy_tags_assets' );

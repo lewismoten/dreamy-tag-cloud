@@ -3,11 +3,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class LewismotenDreamyTagsWidget extends WP_Widget {
+class dreamy_tags_widget extends WP_Widget {
 
     public function __construct() {
         parent::__construct(
-            'lewismoten_dreamy_tags_widget',
+            'dreamy_tags_widget',
             'Dreamy Tags',
             array( 'description' => 'A tag cloud filtered by categories and tags.' )
         );
@@ -59,7 +59,7 @@ class LewismotenDreamyTagsWidget extends WP_Widget {
             $exclude_tag_ids = array_unique( array_merge( $exclude_tag_ids, $filter_tag_ids ) );
         }
         $children = $this->get_bool($instance, 'children', true);
-        $limit = (int) apply_filters('lewismoten_dreamy_tags_max_posts', 2000, $instance );
+        $limit = (int) apply_filters('dreamy_tags_max_posts', 2000, $instance );
 
         // 1. Get all post IDs that match the filters
         $post_args = array(
@@ -207,7 +207,7 @@ class LewismotenDreamyTagsWidget extends WP_Widget {
             return strcasecmp($x->name, $y->name);
         });
 
-        echo '<div class="lewismoten-dreamy-tags-cloud">';
+        echo '<div class="dreamy-tags-cloud">';
         foreach ($terms as $term) {
 
             $term_url   = get_term_link( $term );
@@ -232,7 +232,7 @@ class LewismotenDreamyTagsWidget extends WP_Widget {
             $count_attr = (int)$c;
 
             printf(
-                '<a href="%1$s" class="lewismoten-dreamy-tags-link-%2$s" style="font-size:%3$spt" aria-label="%4$s">%5$s</a> ',
+                '<a href="%1$s" class="dreamy-tags-link-%2$s" style="font-size:%3$spt" aria-label="%4$s">%5$s</a> ',
                 esc_url($term_url),
                 esc_attr((string)$tid_attr),
                 esc_attr(number_format_i18n((float)$size_attr, 2)),

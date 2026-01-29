@@ -55,7 +55,7 @@
     lineHeight: "18px"
   };
 
-  const previewImage = window.lewismoten_dreamy_tags_block?.previewImage;
+  const previewImage = window.dreamy_tags_block?.previewImage;
 
   const TAG_D = `
     M 8.461 1
@@ -125,7 +125,7 @@
         );
       }
 
-      const blockProps = useBlockProps({ className: `lewismoten-dreamy-tags-editor` });
+      const blockProps = useBlockProps({ className: `dreamy-tags-editor` });
 
       const [catSearch, setCatSearch] = useState("");
       const [tagSearch, setTagSearch] = useState("");
@@ -474,7 +474,7 @@
 
         el(
           "div",
-          { className: `lewismoten-dreamy-tags-preview`, style: { marginTop: "8px" } },
+          { className: `dreamy-tags-preview`, style: { marginTop: "8px" } },
           el(serverSideRender, {
             key: "preview",
             block: 'lewismoten/dreamy-tags',
